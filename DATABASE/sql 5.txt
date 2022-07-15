@@ -1,0 +1,60 @@
+use mapping;
+drop table if exists customer_address;
+drop table if exists address;
+drop table if exists customer;
+ 
+create table customer(
+id int primary key auto_increment,
+customername varchar(25) not null,
+mobilenumber varchar(10) not null,
+emailid varchar(25) null);
+ 
+alter table customer auto_increment =1001;
+ 
+insert into customer values(default, "kannan", "9783216489","abc@mail.com");
+insert into customer values(default, "kumar", "9441236547","mymail@mail.com");
+insert into customer values(default, "reena", "6578941236","reena@mail.com");
+insert into customer values(default, "beena", "8845612347", null);
+insert into customer values(default, "meena", "9958745123","xyz@mail.com");
+ 
+select * from customer;
+ 
+create table address(
+id int primary key auto_increment,
+dno varchar(10) not null,
+street varchar(30) not null,
+location varchar(30) null,
+landmark varchar(30) null,
+city varchar(30) not null,
+state varchar(30) not null,
+pincode varchar(6) not null);
+ 
+alter table address auto_increment =101;
+ 
+insert into address values(default, '27/8B', 'Rajaji Nagar 3rd St.', 'Near Health Care Hospital','Religere Shop Opposite', 'Bangalore','Karnataka','500142');
+insert into address values(default, 'F12', 'Sky Apartment, OMR', 'Okkiyam Thuraippakam','Anjjapar Hotel Adjoint', 'Chennai','Tamil Nadu','600072');
+insert into address values(default, 'Block 2 F4', 'Laxmi Flatst, OMR', 'Kelamppakam',' more reatil shop', 'Chennai','Tamil Nadu','600072');
+ 
+select * from address;
+ 
+
+create table customer_address (
+customer_id int   not null unique,
+address_id int  not null,
+constraint foreign key(customer_id) references customer(id),
+constraint foreign key(address_id) references address(id));
+ 
+insert into customer_address values(1001, 102);
+insert into customer_address values(1002, 101);
+insert into customer_address values(1003, 102);
+insert into customer_address values(1004, 103);
+insert into customer_address values(1005, 101);
+ 
+select * from customer_address;
+ 
+SELECT     c.id, c.customername, c.mobilenumber, c.emailid, 
+        a.id, a.dno, a.street, a.location, a.landmark, a.city, a.state, a.state, a.pincode
+FROM  customer_address ca
+INNER JOIN customer c ON c.id = ca.customer_id
+INNER JOIN address a  ON a.id = ca.address_id
+order by c.id;

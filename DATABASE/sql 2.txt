@@ -1,0 +1,52 @@
+use mapping;
+ 
+drop table if exists book;
+ 
+create table book(
+id integer primary key auto_increment, 
+title varchar(30) not null,
+price float not null);
+ 
+alter table book auto_increment =1001;
+ 
+insert into book values(default, 'Introduction to Java 8.0',450.00);
+insert into book values(default, 'Mastering Spring 5.2', 650.00);
+insert into book values(default, 'MySQL 8.0 Dummies', 325.00);
+insert into book values(default, 'Introduction to HTML 5.0',5200.00);
+insert into book values(default, 'AWS Bible',625.00);
+ 
+select * from book;
+ 
+drop table if exists author;
+create table author(
+id integer primary key auto_increment, 
+name varchar(30) not null);
+ 
+alter table author auto_increment =101;
+ 
+insert into author values(default, 'James Clerk');
+insert into author values(default, 'William Jose');
+insert into author values(default, 'Kumar S');
+insert into author values(default, 'Abrakam Linkon');
+insert into author values(default, 'Ramesh Babu');
+select * from author;
+ 
+drop table if exists book_author;
+create table book_author(
+book_id integer not null,
+author_id integer not null,
+constraint foreign key(book_id) references book(id),
+constraint foreign key(author_id) references author(id));
+ 
+insert into book_author values(1001,103);
+insert into book_author values(1001,102);
+insert into book_author values(1002,101);
+insert into book_author values(1003,103);
+insert into book_author values(1003,101);
+insert into book_author values(1003,102);
+ 
+select * from book_author;
+ 
+SELECT book.id, book.title, book.price, author.name FROM book_author
+ INNER JOIN book  ON book.id = book_author.book_id
+ INNER JOIN author  ON author.id = book_author.author_id;

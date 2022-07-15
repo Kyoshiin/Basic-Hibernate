@@ -1,0 +1,40 @@
+use mapping;
+drop table if exists product;
+CREATE TABLE `product` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(128) NOT NULL,
+  `description` varchar(512) NOT NULL,
+  `price` float NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+ alter table product  auto_increment =1001;
+
+ insert into product values(default, 'Redmi 6A','6.2inch Display, 4GB RAM, 32GB ROM',8500.00);
+ insert into product values(default, 'Realme Note 7','8inch Display, 4GB RAM, 16GB ROM',18500.00);
+ insert into product values(default, 'Redmi 8','7 inch Display, 8GB RAM, 64GB ROM',10500.00);
+ insert into product values(default, 'Samsung Galaxy','7.2 inch Display, 4GB RAM, 32GB ROM',12500.00);
+ insert into product values(default, 'Oppo AX','8inch Display, 6GB RAM, 64GB ROM',21000.00);
+ 
+select * from product;
+drop table if exists product_detail;
+ 
+CREATE TABLE `product_detail` (
+  `id` int(11) NOT NULL,
+  `dimension` varchar(45) NOT NULL,
+  `weight` float NOT NULL,
+  `manufacturer` varchar(45) NOT NULL,
+  `origin` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`));
+
+ alter table product_detail  auto_increment =1001;
+
+ insert into product_detail values(1001, '7 x 77 x 165 mm','176.00','Redmi Electonics','china');
+ insert into product_detail values(1002, '716.5 x 7.6 x 0.9 cm','195.00','RealMe Electonics','china');
+ insert into product_detail values(1003, '9 x 74 x 159 mm','196.0','Redmi Electonics','china');
+ insert into product_detail values(1004, '16.5 x 7.6 x 0.9 cm','182.00','Samsung Electonics','china');
+ insert into product_detail values(1005, '16.5 x 7.6 x 0.9 cm','150.00','Oppo Electonics','china');
+
+  select * from product_detail;
+
+select * from product p, product_detail pd where p.id = pd.id;

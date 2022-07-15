@@ -1,0 +1,44 @@
+create  database mapping;
+use mapping;
+ 
+drop table if exists customer;
+ 
+create table customer(
+id int primary key auto_increment,
+customername varchar(25) not null,
+mobilenumber varchar(10) not null,
+emailid varchar(25) null);
+ 
+alter table customer auto_increment =101;
+ 
+insert into customer values(default, "kannan", "9783216489","abc@mail.com");
+insert into customer values(default, "kumar", "9441236547","mymail@mail.com");
+insert into customer values(default, "reena", "6578941236","reena@mail.com");
+insert into customer values(default, "beena", "8845612347", null);
+insert into customer values(default, "meena", "9958745123","xyz@mail.com");
+ 
+select * from customer;
+ 
+use mapping;
+ 
+drop table if exists address;
+ 
+create table address(
+id int  not null unique,
+dno varchar(10) not null,
+street varchar(30) not null,
+location varchar(30) null,
+landmark varchar(30) null,
+city varchar(30) not null,
+state varchar(30) not null,
+pincode varchar(6) not null,
+constraint foreign key(id) references customer(id) );
+ 
+ 
+insert into address values(101, '27/8B', 'Rajaji Nagar 3rd St.', 'Near Health Care Hospital','Religere Shop Opposite', 'Bangalore','Karnataka','500142');
+insert into address values(102, 'F12', 'Sky Apartment, OMR', 'Okkiyam Thuraippakam','Anjjapar Hotel Adjoint', 'Chennai','Tamil Nadu','600072');
+insert into address values(103, 'Block 2 F4', 'Laxmi Flatst, OMR', 'Kelamppakam',' more reatil shop', 'Chennai','Tamil Nadu','600072');
+ 
+select * from address;
+ 
+select * from customer c, address a where c.id = a.id;

@@ -1,0 +1,11 @@
+ IN SQL WORKBENCH CREATE 5 NEW SQL FILES AND RUN EACH FILE ONE BY ONE FROM DATABASE FOLDER.
+
+ IN STS-
+	1 FILE -> OPEN PROJECTS FROM FILE SYSTEM -> IMPORT EVERY PROJECT INDIVIDUALLY.
+
+	2 CHANGE ROOT PASSWORD IN EVERY APPLICATION PROPERTIES FILE OF EACH PROJRCT ->
+
+	src/main/resources/application.properties
+	
+	3 run and check project main file as spring boot and
+	 stop the server by clicking red button every time after checking

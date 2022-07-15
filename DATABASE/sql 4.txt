@@ -1,0 +1,31 @@
+drop table if exists employee;
+drop table if exists account;
+ 
+create table employee (
+id integer primary key auto_increment, 
+name varchar(30));
+ 
+alter table employee auto_increment=1001;
+
+insert into employee values(default, "senthil kumar");
+insert into employee values(default, "kannan G S");
+insert into employee values(default, "Meena Kumari");
+insert into employee values(default, "Rahul");
+insert into employee values(default, "Anjana");
+ 
+select * from employee;
+create table account (
+id integer  not null unique, 
+account_number varchar(19) not null unique, 
+bank_name varchar(30) not null,
+constraint foreign key(id) references employee (id));
+ 
+insert into account values(1001,"7884 5612 6534 1354","Axis Bank");
+insert into account values(1002,'6547 6985 6985 2365','Indian Bank');
+insert into account values(1003,'3558 4458 2458 6974','ICICI Bank');
+insert into account values(1004,'4798 6755 9885 6589','HDFC Bank');
+insert into account values(1005,'3298 7854 3625 4596 ','ICICI Bank');
+
+ select * from account;
+SELECT e.id,  e.name,  a.bank_name,  a.account_number
+FROM employee e, account a WHERE e.id = a.id;
